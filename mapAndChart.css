@@ -1,0 +1,100 @@
+.line-chart {
+    border: 1px solid lightgray;
+    width: 800px;
+    height: 600px;
+}
+.tooltip {
+    position: absolute;
+    padding: 10px;
+    font: 16px sans-serif;
+    background: #222;
+    color: #fff;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
+    opacity: 0.9;
+    visibility: hidden;
+}
+.overlay {
+    fill: none;
+    pointer-events: all;
+}
+
+.focus circle {
+    fill: #28ace0;
+    stroke: #078cea;
+    stroke-width: 2px;
+}
+main .slider-container {
+    width: 750px;
+    margin: 0 auto;
+}
+main .slider-options {
+    padding: 0;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    left: -10px;
+    position: relative;
+}
+main .slider-options li {
+    display: flex;
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+    text-transform: capitalize;
+    text-align: left;
+    width: 68px;
+}
+main .ui-widget-content {
+    height: 6px;
+    border: 0 none;
+    background: #ccc;
+    cursor: pointer;
+}
+main .ui-slider .ui-slider-handle {
+    top: -13px;
+    background: #fff;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    box-shadow: -2px 3px 3px 0 rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+}
+main .ui-slider-handle:focus,
+main .ui-slider-handle:hover {
+    background: #fff;
+    border-color: #ccc;
+}
+
+main .ui-slider-range {
+    background: #ff8517;
+}
+.map {
+    width: 800px;
+    position: relative;
+}
+.pin {
+    width: 40px;
+    height: 40px;
+    animation: stretch 2s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+@keyframes stretch {
+    0% {
+        transform: scale(2, 2);
+    }
+    100% {
+        transform: scaleX(1, 1);
+    }
+}
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.line-chart__container {
+    position: relative;
+}
+.tooltip {
+    position: absolute;
+}
