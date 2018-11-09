@@ -26,7 +26,7 @@ function handleTimeSlider(monthIdx) {
         const mapPin = $(`<img src='./pin.svg' class='pin' title='${title}'>`);
         return mapPin.attr(
             "style",
-            `position:absolute;top:${top - 22};left:${left - 13}`
+            `position:absolute;top:${top - 22}px;left:${left - 13}px`
         );
     });
     $(".map").append(mapPins);

@@ -140,7 +140,11 @@ function mousemove(monthIdx) {
     // focus.select(".x-hover-line").attr("y2", height - yScale(d.price));
     // focus.select(".y-hover-line").attr("x2", width + width);
     tooltip
-        .html(`${d.month} $${d.price}`)
+        .html(
+            `${d.month.split("")[0].toUpperCase() + d.month.slice(1)} $${
+                d.price
+            }`
+        )
         .style("visibility", "visible")
         .style("top", yScale(d.price) + 35 + "px")
         .style("left", xScale(d.month) + "px");
