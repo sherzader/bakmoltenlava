@@ -98,11 +98,15 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 75px;
 }
 .line-chart__container {
     position: relative;
 }
 .line-chart {
     width: 800px;
-    height: 250px;
+    height: 196px;
+}
+p.title {
+    font-weight: bold;
 }
