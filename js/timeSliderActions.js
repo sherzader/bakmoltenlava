@@ -3,6 +3,7 @@ const list = dataArray.map((data, i) => {
         .data("i", i)
         .text(data.month);
 });
+
 $("ul.slider-options").append(list);
 handleTimeSlider(0); // initialize map pins for January
 
@@ -43,10 +44,10 @@ function getPosition(e) {
         y,
     };
 }
-$("img").on("click", e => {
-    const { x, y } = getPosition(e);
-    const circle = $(
-        `<svg width=20 height=20 style='position:absolute;top:${y};left:${x};'><circle cx=${10} cy=${10} r=${10} fill='purple'/></svg>`
-    );
-    $(".map").append(circle);
-});
+// $("img").on("click", e => {
+//     const { x, y } = getPosition(e);
+//     const circle = $(
+//         `<svg width=20 height=20 style='position:absolute;top:${y}px;left:${x}px;'><circle cx=${10} cy=${10} r=${10} fill='purple'/></svg>`
+//     );
+//     $(".map").append(circle);
+// });

@@ -129,11 +129,11 @@
             }
         }
 
-        $(".slider").slider({
-            orientation: "horizontal",
-            range: "min",
-            slide: refreshSwatch,
-            change: refreshSwatch,
-        });
+        // $(".slider").slider({
+        //     orientation: "horizontal",
+        //     range: "min",
+        //     slide: refreshSwatch,
+        //     change: refreshSwatch,
+        // });
     });
 })(jQuery, window, document);
