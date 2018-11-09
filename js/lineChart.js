@@ -1,11 +1,10 @@
 const data = dataArray.map(data => {
     return { month: data.month, price: data.averagePrice };
 });
-console.log(data);
 
 const margin = { top: 20, right: 20, bottom: 30, left: 50 };
-const height = 500;
-const width = 700;
+const height = 150;
+const width = 750;
 
 const xScale = d3
     .scalePoint()
@@ -28,8 +27,7 @@ const line = d3
     })
     .y(function(d) {
         return yScale(d.price);
-    })
-    .curve(d3.curveCardinal);
+    });
 
 const xPoints = data.map(d => xScale(d.month));
 
@@ -40,23 +38,21 @@ const svg = d3
     .attr("width", width)
     .attr("height", height);
 
-const g = svg
-    .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+const g = svg.append("g").attr("transform", "translate(40,20)");
 
-g.append("g")
-    .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(xScale));
+// g.append("g")
+//     .attr("transform", "translate(0," + height + ")")
+//     .call(d3.axisBottom(xScale));
 
-g.append("g")
-    .call(d3.axisLeft(yScale).ticks(6))
-    .append("text")
-    .attr("fill", "#000")
-    .attr("transform", "rotate(-90)")
-    .attr("y", 6)
-    .attr("dy", "0.71em")
-    .attr("text-anchor", "end")
-    .text("Price ($)");
+// g.append("g")
+//     .call(d3.axisLeft(yScale).ticks(6))
+//     .append("text")
+//     .attr("fill", "#000")
+//     .attr("transform", "rotate(-90)")
+//     .attr("y", 6)
+//     .attr("dy", "0.71em")
+//     .attr("text-anchor", "end")
+//     .text("Price ($)");
 
 g.append("path")
     .datum(data)
@@ -86,17 +82,17 @@ const focus = g
     .attr("class", "focus")
     .style("display", "none");
 
-focus
-    .append("line")
-    .attr("class", "x-hover-line hover-line")
-    .attr("y1", 0)
-    .attr("y2", height);
+// focus
+//     .append("line")
+//     .attr("class", "x-hover-line hover-line")
+//     .attr("y1", 0)
+//     .attr("y2", height);
 
-focus
-    .append("line")
-    .attr("class", "y-hover-line hover-line")
-    .attr("x1", width)
-    .attr("x2", width);
+// focus
+//     .append("line")
+//     .attr("class", "y-hover-line hover-line")
+//     .attr("x1", width)
+//     .attr("x2", width);
 
 focus.append("circle").attr("r", 7.5);
 
@@ -106,7 +102,7 @@ const tooltip = d3
     .attr("class", "tooltip");
 
 svg.append("rect")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+    .attr("transform", "translate(40,20)")
     .attr("class", "overlay")
     .attr("width", width)
     .attr("height", height)
@@ -130,20 +126,22 @@ function mousemove(monthIdx) {
     } else {
         // came from mouse hover
         // remove this invert
-        const x = d3.mouse(this)[0]; // x point in pixels
-        // bisector will find the closest point in dataset given the mouse point
-        i = d3.bisector(d => d).left(xPoints, x); // month idx in data
+        const x = d3.mouse(this)[0]; // x point
+        // bisector will find the next closest point in dataset given the mouse point
+        const iRight = d3.bisect(xPoints, x);
+        const iLeft = iRight - 1 >= 0 ? iRight - 1 : 0;
+        i = Math.abs(xPoints[iLeft] - x) > xPoints[iRight] - x ? iRight : iLeft;
     }
     d = data[i];
     focus.attr(
         "transform",
         "translate(" + xScale(d.month) + "," + yScale(d.price) + ")"
     );
-    focus.select(".x-hover-line").attr("y2", height - yScale(d.price));
-    focus.select(".y-hover-line").attr("x2", width + width);
+    // focus.select(".x-hover-line").attr("y2", height - yScale(d.price));
+    // focus.select(".y-hover-line").attr("x2", width + width);
     tooltip
         .html(`${d.month} $${d.price}`)
         .style("visibility", "visible")
-        .style("top", yScale(d.price) + 40 + "px")
+        .style("top", yScale(d.price) + 35 + "px")
         .style("left", xScale(d.month) + "px");
 }
